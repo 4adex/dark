@@ -1,5 +1,6 @@
 DarkMatter/dist
 DarkMatter/node_modules
+DarkMatter/package-lock.json
 DarkMatter/logs
 DarkMatter/*.log
 DarkMatter/npm-debug.log*
