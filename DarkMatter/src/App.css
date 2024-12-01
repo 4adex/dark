@@ -1,0 +1,98 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card{
+  padding:1.5rem;
+  display: flex;
+  flex-direction: column;
+  border: 1px #E1E1E1 solid;
+  border-radius: 8px;
+  margin: 1.25rem;
+}
+
+.card-content{
+  color: #6f6f6f;
+  margin-top: 0.5rem;
+  text-align: left;
+}
+.card-heading{
+  font-size: 1rem;
+  color: #3e3e3e;
+  font-weight: 600;
+  text-align: left;
+}
+
+.card-header{
+  display: flex;
+}
+
+.read-the-docs {
+  padding-top: 2rem ;
+  color: #646675;
+}
+
+.buttons{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.primary-button{
+  background-color: #7F56D9;
+  padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+
+}
+
+.secondary-button{
+  color: #6941C6;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: #FFF;
+  cursor: pointer;
+
+}
+
+.tertiary-button{
+  color: #B42318;
+  padding: 10px 20px;
+  border: none;
+  background-color: #FFF;
+  border: #FDA29B 1px solid;
+  cursor: pointer;
+  border-radius:8px;
+}

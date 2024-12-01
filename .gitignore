@@ -1,0 +1,12 @@
+DarkMatter/dist
+DarkMatter/node_modules
+DarkMatter/logs
+DarkMatter/*.log
+DarkMatter/npm-debug.log*
+DarkMatter/yarn-debug.log*
+DarkMatter/yarn-error.log*
+DarkMatter/pnpm-debug.log*
+DarkMatter/lerna-debug.log*
+DarkMatter/node_modules
+DarkMatter/dist-ssr
+DarkMatter/*.local
