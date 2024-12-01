@@ -173,7 +173,9 @@ interface InputData {
           
               try {
                 const response = await runPrompt('The given string is: ' + prompt, params);
-                results[id] = response;  // Store response with the ID
+                if (!response.includes('Not Dark Pattern')) {
+                  results[id] = response;  // Store response with the ID only if it doesn't contain 'None'
+                }
               } catch (e) {
                 results[id] = 'Error: ' + (e instanceof Error ? e.message : 'Unknown error');  // Handle error and return it for this sentence
               }
@@ -190,7 +192,10 @@ interface InputData {
               }
 
               console.log('Running prompt:', prompt);
-              return session.prompt(prompt);
+              let result = await session.prompt(prompt);
+          const resultLines = result.split('\n');
+            result = resultLines[0];
+          return result;
             } catch (e) {
               console.log('Prompt failed');
               console.error(e);

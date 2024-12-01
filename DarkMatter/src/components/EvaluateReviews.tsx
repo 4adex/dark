@@ -146,6 +146,34 @@ function Checkbox() {
         } else {
             boxDiv.innerText = 'Fake review detected';
             selected_element.style.background = '#FFD4D4';
+
+            //Save that a fake review was detected in local storage
+            const dataToStore = { type: 'fake_review', url: window.location.href, date: new Date().toISOString().split('T')[0] };
+            console.log('Storing data:', dataToStore);
+
+            chrome.storage.local.get(['darkPatterns'], (result) => {
+              let darkPatterns = result.darkPatterns || [];
+              // Enforce FIFO if entries exceed 50,000
+              if (darkPatterns.length >= 50000) {
+                darkPatterns.shift(); // Remove the oldest entry (first element)
+              }
+
+              darkPatterns.push(dataToStore); // Add the new entry
+              chrome.storage.local.set({ darkPatterns: darkPatterns }, () => {
+                console.log('Data stored successfully');
+              });
+            });
+
+
+            chrome.storage.local.get(['darkPatterns'], (result) => {
+              const darkPatterns = result.darkPatterns || [];
+              console.log('retrievinnnnng data');
+              console.log(darkPatterns);
+              // Process the retrieved data
+            });
+            // Send data to background script
+            // chrome.runtime.sendMessage({ action: 'storeData', data: dataToStore });
+
         }
         boxDiv.appendChild(closeButton);
         

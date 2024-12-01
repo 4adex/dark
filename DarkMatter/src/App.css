@@ -5,6 +5,10 @@
   text-align: center;
 }
 
+body {
+  border-radius: 8px;
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;

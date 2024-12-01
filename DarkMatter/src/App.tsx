@@ -1,15 +1,17 @@
 import './App.css';
-import Checkbox from './components/Checkbox';
 import ScanElement from './components/ScanElement';
 import EvaluateReviews from './components/EvaluateReviews';
 import Dom from './components/Dom';
 import Checkprice from './components/CheckPrice';
-import logo from "./logo.png";
-import FakeRevew from './components/bruh';
+import Stats from './components/stats';
+// import logo from "./logo.png";
+import DarkLogo from "./assets/DarkLogo.svg";
+import Close from "./assets/Close2.svg";
+// import FakeRevew from './components/bruh';
 import { useEffect, useState } from 'react';
 import DarkPatternSelector from './components/darkselector';
-import OCR from './components/pict';
-import Scrapper from './components/scrap';
+// import OCR from './components/pict';
+// import Scrapper from './components/scrap';
 function App() {
 
   const [showDropdown, setShowDropdown] = useState(false); // State variable for dropdown visibility
@@ -120,9 +122,9 @@ function App() {
   }
 
   return (
-    <div style={{ background: "white", minHeight: "25rem", display: "flex", flexDirection: "column", overflow:"auto", minWidth:"20rem"}}>  
-  <div style={{ background: "white", minHeight: "25rem", display: "flex", flexDirection: "column",borderRadius:"8px", overflow:"auto" }}>
-  <div style={{justifyContent:"space-between",display:"flex",height:"2rem",padding:"1rem"}}>        
+    <div style={{ background: "white", minHeight: "25rem", display: "flex", flexDirection: "column", overflow:"auto", minWidth:"20rem",borderRadius:"8px", }}>  
+    <div style={{ background: "white", minHeight: "25rem", display: "flex", flexDirection: "column",borderRadius:"8px", overflow:"auto" }}>
+  {/* <div style={{justifyContent:"space-between",display:"flex",height:"2rem",padding:"1rem"}}>        
   <div style={{ display: "flex", justifyContent: "left", alignItems: "center", gap: "1rem"}}>
     <img src={logo} style={{ height: "2em" }} alt="Logo" />
     <h1>DarkMatter</h1>
@@ -130,16 +132,22 @@ function App() {
   <div style={{color:"#9599A1",display:"flex",alignItems:"center",fontSize:"1.75rem",marginLeft:"1rem"}}>
     X
   </div>
-  </div>
+  </div> */}
+   <div style={{justifyContent:"space-between",display:"flex",padding:"1rem", alignItems:"center", minWidth:"440px"}}>
+    <img src={DarkLogo} style={{ height: "3em" }} alt="Logo" />
+      <h1 style={{fontSize:"28px"}}>DarkMatter</h1>
+      <img src={Close} style={{height: "2em", cursor: "pointer", marginLeft:"0.5rem"}} alt="Close" onClick={() => {console.log("Close clicked"); setShowDropdown(false);}} />
+    </div>
     <div style={{ display: "flex", flexDirection:"column"}}>
-    <Checkprice />
-      <Checkbox />
+      <Stats />
+    <Dom/>
       <ScanElement />
       <EvaluateReviews />
-      <Dom/>
-      <FakeRevew/>
-      <Scrapper/>
-      <OCR/>
+      
+      <Checkprice />
+      {/* <FakeRevew/> */}
+      {/* <Scrapper/> */}
+      {/* <OCR/> */}
     </div>
 
     <p className="read-the-docs">
