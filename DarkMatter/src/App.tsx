@@ -1,5 +1,7 @@
 import './App.css';
 import Checkbox from './components/Checkbox';
+import ScanElement from './components/ScanElement';
+import EvaluateReviews from './components/EvaluateReviews';
 import Dom from './components/Dom';
 import Checkprice from './components/CheckPrice';
 import logo from "./logo.png";
@@ -132,6 +134,8 @@ function App() {
     <div style={{ display: "flex", flexDirection:"column"}}>
     <Checkprice />
       <Checkbox />
+      <ScanElement />
+      <EvaluateReviews />
       <Dom/>
       <FakeRevew/>
       <Scrapper/>
