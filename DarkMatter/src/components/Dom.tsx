@@ -1,6 +1,7 @@
 import Card from "./card";
 import tag from "../Tag.png"
 
+
 function Checkbox({value}) {
 
     interface TreeNode {
@@ -238,6 +239,7 @@ function Checkbox({value}) {
               };
           
               try {
+
                 const response = await runPrompt("The given string is: " + prompt, params);
                 results.set(id, response); // Store response with the ID
               } catch (e) {
@@ -256,7 +258,10 @@ function Checkbox({value}) {
               }
 
               console.log('Running prompt:', prompt);
-              return session.prompt(prompt);
+              let result = await session.prompt(prompt);
+          const resultLines = result.split('\n');
+            result = resultLines[0];
+          return result;
             } catch (e) {
               console.log('Prompt failed');
               console.error(e);
@@ -498,7 +503,6 @@ function Checkbox({value}) {
           imageSrc={tag}
           onPrimaryButtonClick={handleClick}
         />
-        
       </>
     );
   };

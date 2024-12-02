@@ -13,7 +13,7 @@ interface ChartData {
   amazon: PriceData[];
 }
 
-function CheckPrice() {
+function CheckPrice(isDarkMode: any) {
   function generateFakeData(): ChartData {
   
     return {
@@ -155,6 +155,7 @@ function CheckPrice() {
           </div>
         ) : (
           <Card
+            isDarkMode={isDarkMode}
             heading="Check special price validity"
             primaryButton="Check validity"
             content="This website claims limited time special price offer."
