@@ -4,18 +4,17 @@ import EvaluateReviews from './components/EvaluateReviews';
 import Dom from './components/Dom';
 import Checkprice from './components/CheckPrice';
 import Stats from './components/stats';
-// import logo from "./logo.png";
 import DarkLogo from "./assets/DarkLogo.svg";
 import Close from "./assets/Close2.svg";
-// import FakeRevew from './components/bruh';
 import { useEffect, useState } from 'react';
 import DarkPatternSelector from './components/darkselector';
-// import OCR from './components/pict';
-// import Scrapper from './components/scrap';
+
+
 function App() {
 
   const [showDropdown, setShowDropdown] = useState(false); // State variable for dropdown visibility
   const [selectedPattern, setSelectedPattern] = useState<string | null>(null); // State variable for selected dark pattern
+  const [isDarkMode, setIsDarkMode] = useState(false); // State for dark mode
 
   const handlePatternSelect = (pattern: string) => {
     setSelectedPattern(pattern); // Update selected dark pattern
@@ -32,6 +31,10 @@ function App() {
 
   const handleClick = () => {
     setShowDropdown(!showDropdown)
+  };
+
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
   };
 
   const sendreport = async () => {
@@ -122,8 +125,8 @@ function App() {
   }
 
   return (
-    <div style={{ background: "white", minHeight: "25rem", display: "flex", flexDirection: "column", overflow:"auto", minWidth:"20rem",borderRadius:"8px", }}>  
-    <div style={{ background: "white", minHeight: "25rem", display: "flex", flexDirection: "column",borderRadius:"8px", overflow:"auto" }}>
+    <div style={{ background: isDarkMode ? "#1E1E1E" : "white", minHeight: "25rem", display: "flex", flexDirection: "column", overflow:"auto", minWidth:"20rem", padding:"1.5rem" }}>  
+    <div style={{ background: isDarkMode ? "#1E1E1E" : "white", minHeight: "25rem", display: "flex", flexDirection: "column", overflow:"auto" }}>
   {/* <div style={{justifyContent:"space-between",display:"flex",height:"2rem",padding:"1rem"}}>        
   <div style={{ display: "flex", justifyContent: "left", alignItems: "center", gap: "1rem"}}>
     <img src={logo} style={{ height: "2em" }} alt="Logo" />
@@ -140,7 +143,7 @@ function App() {
     </div>
     <div style={{ display: "flex", flexDirection:"column"}}>
       <Stats />
-    <Dom/>
+    <Dom />
       <ScanElement />
       <EvaluateReviews />
       
@@ -150,9 +153,9 @@ function App() {
       {/* <OCR/> */}
     </div>
 
-    <p className="read-the-docs">
+    {/* <p className="read-the-docs">
       Click on the logo to visit the website.
-    </p>
+    </p> */}
 </div>
 <div style={{color:'black',flexDirection:"row",justifyContent:"space-between", display:"flex",alignItems:"center"}} >
       <b>Detected something unusual? </b>
@@ -162,6 +165,21 @@ function App() {
       )}
       {selectedPattern && <p>Selected Dark Pattern: {selectedPattern}</p>}
     </div>
+    {/* <button
+        style={{
+          marginTop: "1rem",
+          alignSelf: "center",
+          padding: "0.5rem 1rem",
+          backgroundColor: isDarkMode ? "gray" : "blue",
+          color: "white",
+          border: "none",
+          borderRadius: "5px",
+          cursor: "pointer",
+        }}
+        onClick={toggleDarkMode}
+      >
+        {isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+      </button> */}
     </div>
   );
 }

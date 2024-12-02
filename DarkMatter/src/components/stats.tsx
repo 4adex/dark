@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-function Stats() {
+function Stats(isDarkMode: any) {
     interface DataToStore {
         type: string;
         url: string;
@@ -52,30 +52,24 @@ function Stats() {
             });
         };
 
-        // Fetch data initially and set up a listener to update live
-        console.log('Initializing stats component and starting interval...');
+        // Fetch data once when the component is mounted
+        console.log('Initializing stats component...');
         fetchData();
-
-        const intervalId = setInterval(fetchData, 1000); // Update every second
-        return () => {
-            console.log('Cleaning up interval...');
-            clearInterval(intervalId);
-        }; // Clean up on unmount
-    }, []);
+    }, []); // Empty dependency array to run the effect only once
 
     return (
         <div style={{ display: "flex", justifyContent: "space-around", alignItems: "center", textAlign: "center", padding: "20px", color: "#666" }}>
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center", margin: "0 20px" }}>
-                <div style={{ fontSize: "36px", color: "#AAA", marginBottom: "5px", fontWeight: "600", fontFamily: "'Inter', sans-serif" }}>{totalDarkPatternsToday}</div>
-                <div style={{ fontSize: "14px", fontFamily: "Inter", fontWeight: "600", color: "#940CFF" }}>dark patterns detected today</div>
+                <div style={{ fontSize: "36px", color: isDarkMode ? "#7F56D9":"#AAA", marginBottom: "5px", fontWeight: "600", fontFamily: "'Inter', sans-serif" }}>{totalDarkPatternsToday}</div>
+                <div style={{ fontSize: "14px", fontFamily: "Inter", fontWeight: "600", color: isDarkMode ? "9B9B9B" :"#940CFF" }}>dark patterns detected today</div>
             </div>
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center", margin: "0 20px" }}>
-                <div style={{ fontSize: "36px", color: "#AAA", marginBottom: "5px", fontWeight: "600", fontFamily: "'Inter', sans-serif" }}>{totalDarkPatterns}</div>
-                <div style={{ fontSize: "14px", fontFamily: "Inter", fontWeight: "600", color: "#940CFF" }}>dark patterns since install</div>
+                <div style={{ fontSize: "36px", color: isDarkMode ? "#7F56D9":"#AAA", marginBottom: "5px", fontWeight: "600", fontFamily: "'Inter', sans-serif" }}>{totalDarkPatterns}</div>
+                <div style={{ fontSize: "14px", fontFamily: "Inter", fontWeight: "600", color: isDarkMode ? "9B9B9B" :"#940CFF" }}>dark patterns since install</div>
             </div>
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center", margin: "0 20px" }}>
-                <div style={{ fontSize: "36px", color: "#AAA", marginBottom: "5px", fontWeight: "600", fontFamily: "'Inter', sans-serif" }}>{totalFakeReviews}</div>
-                <div style={{ fontSize: "14px", fontFamily: "Inter", fontWeight: "600", color: "#940CFF" }}>fake reviews detected</div>
+                <div style={{ fontSize: "36px", color: isDarkMode ? "#7F56D9":"#AAA", marginBottom: "5px", fontWeight: "600", fontFamily: "'Inter', sans-serif" }}>{totalFakeReviews}</div>
+                <div style={{ fontSize: "14px", fontFamily: "Inter", fontWeight: "600", color: isDarkMode ? "9B9B9B" :"#940CFF" }}>fake reviews detected</div>
             </div>
         </div>
     );

@@ -1,6 +1,6 @@
 import Card from "./card";
 import tag from "../CheckSquare.png";
-function Checkbox() {
+function Checkbox(isDarkMode: any) {
   const handleClick = async () => {
     let [tab] = await chrome.tabs.query({ active: true });
     // giving generic params to executeScript for handling args
@@ -95,17 +95,17 @@ function Checkbox() {
         boxDiv.style.flexDirection = 'row';
         boxDiv.style.color = 'white';
         boxDiv.style.background = '#940CFF';
-        boxDiv.style.fontSize = '12px';
-        boxDiv.style.padding = '8px 22px';
-        boxDiv.style.fontSize = '12px';
-        boxDiv.style.borderRadius = '12px';
+        boxDiv.style.fontSize = '13px';
+        boxDiv.style.fontFamily = "Poppins, sans-serif";
+        boxDiv.style.fontWeight = '520';
+        boxDiv.style.padding = '2px 16px';
+        boxDiv.style.borderRadius = '6px';
         boxDiv.style.width = 'auto';
         boxDiv.style.minWidth = '100px';
+        boxDiv.style.maxWidth = '240px';
         boxDiv.style.cursor = 'default';
         boxDiv.style.boxShadow = '0px 4px 10.7px 0px rgba(0, 0, 0, 0.25)';
         boxDiv.style.position = 'absolute';
-        boxDiv.style.right = '10%';
-        boxDiv.style.top = '-40%';
         boxDiv.innerText = 'Detecting: Please wait...';
         document.body.appendChild(boxDiv);
 
@@ -114,16 +114,20 @@ function Checkbox() {
       const scrollTop = window.scrollY;
       const scrollLeft = window.scrollX;
 
-      boxDiv.style.top = `${rect.top + scrollTop - boxDiv.offsetHeight}px`;
+      boxDiv.style.top = `${rect.top + scrollTop - boxDiv.offsetHeight*2}px`;
       boxDiv.style.right = `${scrollLeft + document.body.clientWidth - rect.right}px`;
 
         const closeButton = document.createElement('div');
-        closeButton.innerText = 'x';
-        closeButton.style.padding = '0px 0px 24px 24px';
+        const closeIcon = document.createElement('img');
+        closeIcon.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAiIGhlaWdodD0iOSIgdmlld0JveD0iMCAwIDEwIDkiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0xLjM5NTE0IDFMOC4xMDIyOSA3LjcwNzE1IiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8cGF0aCBkPSJNMSA3LjcwNzE1TDcuNzA3MTUgMSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPC9zdmc+Cg==';
+        closeIcon.style.width = '12px';
+        closeIcon.style.height = '12px';
+        closeButton.appendChild(closeIcon);
+        closeButton.style.padding = '8px 0px 16px 16px';
         closeButton.style.cursor = 'pointer';
         closeButton.style.color = 'white';
-        closeButton.style.fontSize = '14px';
-        closeButton.style.fontWeight = 'bold';
+        // closeButton.style.fontSize = '14px';
+        // closeButton.style.fontWeight = 'bold';
         closeButton.addEventListener('click', () => {
           document.body.removeChild(boxDiv);
           if (selected_element) {
@@ -141,12 +145,12 @@ function Checkbox() {
         result = result.trim();
         console.log("Result from the model:", result);
         if (result == "Not Dark Pattern"){
-            boxDiv.innerText = 'Safe, Not a dark pattern';
+            boxDiv.innerText = 'Safe, the element doesn\'t contain any dark patterns.';
             boxDiv.appendChild(closeButton);
             selected_element.style.background = '#D4FFDB';
         }
         else {
-            boxDiv.innerText = result;
+            boxDiv.innerText = 'Dark Pattern Detected: '+result;
             boxDiv.appendChild(closeButton);
             selected_element.style.background = '#FFD4D4';
 
@@ -237,6 +241,7 @@ function Checkbox() {
   return (
     <>
       <Card
+        isDarkMode={isDarkMode}
         heading="Scan a specific element."
         primaryButton="Click to Scan"
         content="Click to point out which element you want to scan in the page and get responses for that element."

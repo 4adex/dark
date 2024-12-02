@@ -1,6 +1,6 @@
 import Card from "./card";
 import tag from "../CheckSquare.png";
-function Checkbox() {
+function EvaluateReviews(isDarkMode: any) {
   const handleClick = async () => {
     let [tab] = await chrome.tabs.query({ active: true });
     // giving generic params to executeScript for handling args
@@ -224,8 +224,9 @@ function Checkbox() {
   return (
     <>
       <Card
+        isDarkMode={isDarkMode}
         heading="Review Evaluation"
-        primaryButton="Click to Scan"
+        primaryButton="Scan Reviews"
         content="Scan a specific user review to know if it is fake or if AI generated."
         imageSrc={tag}
         onPrimaryButtonClick={handleClick}
@@ -234,4 +235,4 @@ function Checkbox() {
   );
 }
 
-export default Checkbox;
+export default EvaluateReviews;
