@@ -1,6 +1,7 @@
 import './App.css';
 import Checkbox from './components/Checkbox';
 import Dom from './components/Dom';
+import Slider  from './components/slider';
 import Checkprice from './components/CheckPrice';
 import logo from "./logo.png";
 import FakeRevew from './components/bruh';
@@ -12,6 +13,12 @@ function App() {
 
   const [showDropdown, setShowDropdown] = useState(false); // State variable for dropdown visibility
   const [selectedPattern, setSelectedPattern] = useState<string | null>(null); // State variable for selected dark pattern
+
+  const [sliderValue, setSliderValue] = useState(0); // Shared state
+
+  const handleSliderChange = (value) => {
+    setSliderValue(value); // Update the shared state
+  };
 
   const handlePatternSelect = (pattern: string) => {
     setSelectedPattern(pattern); // Update selected dark pattern
@@ -132,7 +139,8 @@ function App() {
     <div style={{ display: "flex", flexDirection:"column"}}>
     <Checkprice />
       <Checkbox />
-      <Dom/>
+      <Slider onChange={handleSliderChange} />
+      <Dom value={sliderValue} />
       <FakeRevew/>
       <Scrapper/>
       <OCR/>
