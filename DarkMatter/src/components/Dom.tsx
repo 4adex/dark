@@ -81,9 +81,6 @@ function Checkbox({value}) {
             return; // Skip this iteration
           }
 
-          const dataToStore = { type: classification, url: window.location.href, date: new Date().toISOString().split('T')[0] };
-
-          console.log('Storing data:', dataToStore);
 
           chrome.storage.local.get(['darkPatterns'], (result) => {
             let darkPatterns = result.darkPatterns || [];
@@ -91,7 +88,7 @@ function Checkbox({value}) {
             if (darkPatterns.length >= 50000) {
               darkPatterns.shift(); // Remove the oldest entry (first element)
             }
-            darkPatterns.push(dataToStore); // Add the new entry
+            darkPatterns.push({ type: classification, url: window.location.href, date: new Date().toISOString().split('T')[0] }); // Add the new entry
             chrome.storage.local.set({ darkPatterns: darkPatterns }, () => {
               console.log('Data stored successfully');
             });
