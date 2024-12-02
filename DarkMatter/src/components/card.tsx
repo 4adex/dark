@@ -14,7 +14,7 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ heading, imageSrc, content, primaryButton, secondaryButton, tertiaryButton, onPrimaryButtonClick, onSecondaryButtonClick, onTertiaryButtonClick }) => {
     return (
-        <div className="card">
+        <div className= "card">
             <div className="card-header">
                 <div className="card-image"><img src={imageSrc} alt="Card" /></div>
                 <div style={{ marginLeft: "1rem", marginBottom: "1.5rem" }}>
