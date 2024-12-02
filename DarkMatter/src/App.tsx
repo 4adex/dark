@@ -2,6 +2,7 @@ import './App.css';
 import ScanElement from './components/ScanElement';
 import EvaluateReviews from './components/EvaluateReviews';
 import Dom from './components/Dom';
+import Slider  from './components/slider';
 import Checkprice from './components/CheckPrice';
 import Stats from './components/stats';
 import DarkLogo from "./assets/DarkLogo.svg";
@@ -15,6 +16,12 @@ function App() {
   const [showDropdown, setShowDropdown] = useState(false); // State variable for dropdown visibility
   const [selectedPattern, setSelectedPattern] = useState<string | null>(null); // State variable for selected dark pattern
   const [isDarkMode, setIsDarkMode] = useState(false); // State for dark mode
+
+  const [sliderValue, setSliderValue] = useState(0); // Shared state
+
+  const handleSliderChange = (value) => {
+    setSliderValue(value); // Update the shared state
+  };
 
   const handlePatternSelect = (pattern: string) => {
     setSelectedPattern(pattern); // Update selected dark pattern
@@ -143,7 +150,8 @@ function App() {
     </div>
     <div style={{ display: "flex", flexDirection:"column"}}>
       <Stats />
-    <Dom />
+    <Slider onChange={handleSliderChange} />
+      <Dom value={sliderValue} />
       <ScanElement />
       <EvaluateReviews />
       
