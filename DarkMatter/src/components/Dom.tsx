@@ -98,11 +98,11 @@ function Checkbox({value}) {
           const element = document.querySelector(`[dark-id="${key}"]`) as HTMLElement;
           if (element) {
             // Style the element
-            element.style.border = '1px solid #940CFF';
-            element.style.background = '#DFD4FF';
+            element.style.border = '1px solid #FF6509';
+            element.style.background = '#FFDBC6';
             element.style.position = 'relative';
             element.style.borderRadius = '6px';
-            // element.style.padding = '10px';
+            element.style.padding = '8px';
             element.style.margin = '15px';
         
             // Create the classification box
@@ -112,11 +112,11 @@ function Checkbox({value}) {
             boxDiv.style.justifyContent = 'center';
             boxDiv.style.alignItems = 'center';
             boxDiv.style.color = 'white';
-            boxDiv.style.background = '#940CFF';
-            boxDiv.style.fontSize = '13px';
-            boxDiv.style.fontFamily = "Poppins, sans-serif";
-            boxDiv.style.fontWeight = '520';
-            boxDiv.style.padding = '2px 16px';
+            boxDiv.style.background = 'red';
+            boxDiv.style.fontSize = '14px';
+            boxDiv.style.fontFamily = "Line Seed Sans, sans-serif";
+            boxDiv.style.fontWeight = '500';
+            boxDiv.style.padding = '4px 16px';
             boxDiv.style.borderRadius = '6px';
             boxDiv.style.width = 'auto';
             boxDiv.style.minWidth = '100px';
@@ -153,6 +153,8 @@ function Checkbox({value}) {
             tooltip.style.textAlign = 'left';
             tooltip.style.lineHeight = '1.5';
             tooltip.innerText = explanation;
+
+            
 
             
 
@@ -399,18 +401,18 @@ function Checkbox({value}) {
 
                 var partialMap = new Map([...cleanedMap].slice(0, limit));
 
-                // const allowedValues = ["LIMITED TIME", "HURRY"];
-                // const filteredMap = new Map<string, string>();
+                const allowedValues = ["LIMITED TIME", "HURRY", "BEAT Amazon","Viewing This", "We will"];
+                const filteredMap = new Map<string, string>();
 
-                // cleanedMap.forEach((value, key) => {
-                //     if (allowedValues.some(allowedValue => value.includes(allowedValue))) {
-                //     filteredMap.set(key, value);
-                //     }
-                // });
+                cleanedMap.forEach((value, key) => {
+                    if (allowedValues.some(allowedValue => value.includes(allowedValue))) {
+                    filteredMap.set(key, value);
+                    }
+                });
 
-                // console.log("Filtered Map:", Array.from(filteredMap.entries()));
+                console.log("Filtered Map:", Array.from(filteredMap.entries()));
 
-                // partialMap = filteredMap;
+                partialMap = filteredMap;
                 
                 console.log("Partial Map:", Array.from(partialMap.entries()));
 

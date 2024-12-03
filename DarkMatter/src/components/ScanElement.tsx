@@ -185,8 +185,8 @@ async function handleSummarizeArbitrary(
         
 
 
-        selected_element.style.border = '1px solid red';
-        selected_element.style.background = '#FFF3D4';
+        selected_element.style.border = '1px solid #FF6509';
+        selected_element.style.background = '#DED8D5';
         selected_element.style.position = 'relative';
         selected_element.style.borderRadius = '13px';
         selected_element.style.padding = '4px';
@@ -203,11 +203,11 @@ async function handleSummarizeArbitrary(
         boxDiv.style.alignItems = 'center';
         boxDiv.style.flexDirection = 'row';
         boxDiv.style.color = 'white';
-        boxDiv.style.background = '#940CFF';
-        boxDiv.style.fontSize = '13px';
-        boxDiv.style.fontFamily = "Poppins, sans-serif";
-        boxDiv.style.fontWeight = '520';
-        boxDiv.style.padding = '2px 16px';
+        boxDiv.style.background = '#FF6509';
+        boxDiv.style.fontSize = '14px';
+        boxDiv.style.fontFamily = "Line Seed Sans, sans-serif";
+        boxDiv.style.fontWeight = '500';
+        boxDiv.style.padding = '4px 16px';
         boxDiv.style.borderRadius = '6px';
         boxDiv.style.width = 'auto';
         boxDiv.style.minWidth = '100px';
