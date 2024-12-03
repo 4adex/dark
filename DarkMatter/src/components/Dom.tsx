@@ -1,5 +1,5 @@
 import Card from "./card";
-import tag from "../Tag.png"
+import scan from "../assets/Scan1.png"
 
 
 function Checkbox({value}) {
@@ -551,10 +551,10 @@ function Checkbox({value}) {
 
 
         <Card
-          heading="Get Dark Patterns"
-          primaryButton="Show Dark Patterns"
-          content="This website has potential dark patterns present. Utilise a trained model to detect them."
-          imageSrc={tag}
+          heading="Dark Pattern Scanner"
+          primaryButton="Start Scan"
+          content="This page might contain potential dark patterns. Utilize Gemini Nano to identify them."
+          imageSrc={scan}
           onPrimaryButtonClick={handleClick}
         />
         

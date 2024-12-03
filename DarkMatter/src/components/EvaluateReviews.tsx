@@ -1,5 +1,5 @@
 import Card from "./card";
-import tag from "../CheckSquare.png";
+import reviews from "../assets/Review.png";
 function EvaluateReviews(isDarkMode: any) {
   const handleClick = async () => {
     let [tab] = await chrome.tabs.query({ active: true });
@@ -230,9 +230,9 @@ function EvaluateReviews(isDarkMode: any) {
       <Card
         isDarkMode={isDarkMode}
         heading="Review Evaluation"
-        primaryButton="Scan Reviews"
-        content="Scan a specific user review to know if it is fake or if AI generated."
-        imageSrc={tag}
+        primaryButton="Select Review"
+        content="Product reviews can be fake as well as AI generated. Use this tool to know how trustable a review is."
+        imageSrc={reviews}
         onPrimaryButtonClick={handleClick}
       ></Card>
     </>

@@ -1,6 +1,6 @@
 import Card from "./card";
-import tag from "../CheckSquare.png";
-function Checkbox(isDarkMode: any) {
+import manual from "../assets/Manual.png";
+function Checkbox() {
   const handleClick = async () => {
     let [tab] = await chrome.tabs.query({ active: true });
     // giving generic params to executeScript for handling args
@@ -241,11 +241,10 @@ function Checkbox(isDarkMode: any) {
   return (
     <>
       <Card
-        isDarkMode={isDarkMode}
-        heading="Scan a specific element."
-        primaryButton="Click to Scan"
-        content="Click to point out which element you want to scan in the page and get responses for that element."
-        imageSrc={tag}
+        heading="Scan Manually"
+        primaryButton="Select Element"
+        content="Select a specific suspicious element to check if it is a dark pattern or not."
+        imageSrc={manual}
         onPrimaryButtonClick={handleClick}
       ></Card>
     </>

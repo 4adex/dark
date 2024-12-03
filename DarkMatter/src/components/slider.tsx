@@ -11,8 +11,8 @@ function Slider({ onChange }) {
   };
 
   return (
-    <div style={{display:"flex", flexDirection:"row", gap:"16px", justifyContent:"center", alignItems:"center", marginTop:"40px"}}>
-      <h3 style={{ color: '#7F56D9', fontFamily:"Poppins, sans-serif",fontWeight:"600", fontSize:"14px"}}>Select depth</h3>
+    <div className="slider-wrapper">
+      <h3 className="slider-label">Select depth</h3>
       <div >
           <input
             type="range"
@@ -22,7 +22,8 @@ function Slider({ onChange }) {
             value={sliderValue}
             step="1"
             onChange={handleInputChange}
-            style={{ width:"300px",accentColor: '#7F56D9' }}
+            className="slider"
+            
           />
         </div>
     </div> 
