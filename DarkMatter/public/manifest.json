@@ -4,18 +4,19 @@
     "version": "1.0.0",
     "description": "A basic extension to battle dark patterns",
     "action": {
-        "default_popup": "index.html"
+        "default_title": "Click to open side panel"
     },
-    "icons": { "16": "images/logo_darkmatter.png",
-           "48": "images/logo_darkmatter.png",
-          "128": "images/logo_darkmatter.png" },
+    "icons": { "16": "images/darkLogo2.png",
+           "48": "images/darkLogo2.png",
+          "128": "images/darkLogo2.png" },
     "content_scripts" : [
         {
             "matches": [
             "https://*/*",
             "http://*/*"
             ],
-            "js": ["scripts/checkbox.js", "scripts/clickjacking.js", "scripts/storageListener.js"]
+            "js": ["scripts/clickjacking.js"]
+            
         }
     ],
     "permissions": [
@@ -24,8 +25,13 @@
         "activeTab",
         "scripting",
         "alarms",
-        "aiLanguageModelOriginTrial"
+        "aiLanguageModelOriginTrial",
+        "sidePanel"
     ],
+
+    "side_panel": {
+        "default_path": "index.html"
+    },
 
     "host_permissions": [
         "https://*/*",

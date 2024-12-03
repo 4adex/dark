@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-function Stats(isDarkMode: any) {
+function Stats() {
     interface DataToStore {
         type: string;
         url: string;
@@ -58,20 +58,19 @@ function Stats(isDarkMode: any) {
     }, []); // Empty dependency array to run the effect only once
 
     return (
-        <div style={{ display: "flex", justifyContent: "space-around", alignItems: "center", textAlign: "center", padding: "20px", color: "#666" }}>
-            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", margin: "0 20px" }}>
-                <div style={{ fontSize: "36px", color: isDarkMode ? "#7F56D9":"#AAA", marginBottom: "5px", fontWeight: "600", fontFamily: "'Inter', sans-serif" }}>{totalDarkPatternsToday}</div>
-                <div style={{ fontSize: "14px", fontFamily: "Inter", fontWeight: "600", color: isDarkMode ? "9B9B9B" :"#940CFF" }}>dark patterns detected today</div>
-            </div>
-            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", margin: "0 20px" }}>
-                <div style={{ fontSize: "36px", color: isDarkMode ? "#7F56D9":"#AAA", marginBottom: "5px", fontWeight: "600", fontFamily: "'Inter', sans-serif" }}>{totalDarkPatterns}</div>
-                <div style={{ fontSize: "14px", fontFamily: "Inter", fontWeight: "600", color: isDarkMode ? "9B9B9B" :"#940CFF" }}>dark patterns since install</div>
-            </div>
-            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", margin: "0 20px" }}>
-                <div style={{ fontSize: "36px", color: isDarkMode ? "#7F56D9":"#AAA", marginBottom: "5px", fontWeight: "600", fontFamily: "'Inter', sans-serif" }}>{totalFakeReviews}</div>
-                <div style={{ fontSize: "14px", fontFamily: "Inter", fontWeight: "600", color: isDarkMode ? "9B9B9B" :"#940CFF" }}>fake reviews detected</div>
-            </div>
-        </div>
+
+        <div className="stats-grid">
+        {[
+          { value: totalDarkPatternsToday, label: "Patterns Today" },
+          { value: totalDarkPatterns, label: "Patterns Total" },
+          { value: totalFakeReviews, label: "Fake Reviews" }
+        ].map((stat, index) => (
+          <div key={index} className="stat-card">
+            <div className="stat-value">{stat.value}</div>
+            <div className="stat-label">{stat.label}</div>
+          </div>
+        ))}
+      </div>
     );
 }
 

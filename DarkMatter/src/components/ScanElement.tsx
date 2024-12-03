@@ -1,6 +1,6 @@
 import Card from "./card";
-import tag from "../CheckSquare.png";
-function Checkbox(isDarkMode: any) {
+import manual from "../assets/Manual.png";
+function Checkbox() {
   const handleClick = async () => {
     let [tab] = await chrome.tabs.query({ active: true });
     // giving generic params to executeScript for handling args
@@ -152,7 +152,7 @@ async function handleSummarizeArbitrary(
         };
 
         element.classList.add("highlighted-element");
-        element.style.background = "#DFD4FF";
+        element.style.background = "#FFDBC6";
         element.style.borderRadius = "8px";
       }
     };
@@ -185,10 +185,10 @@ async function handleSummarizeArbitrary(
         
 
 
-        selected_element.style.border = '1px solid red';
-        selected_element.style.background = '#FFF3D4';
+        selected_element.style.border = '1px solid #FF6509';
+        selected_element.style.background = '#FFDBC6';
         selected_element.style.position = 'relative';
-        selected_element.style.borderRadius = '13px';
+        selected_element.style.borderRadius = '6px';
         selected_element.style.padding = '4px';
         // selected_element.style.margin = '10px';
 
@@ -203,11 +203,11 @@ async function handleSummarizeArbitrary(
         boxDiv.style.alignItems = 'center';
         boxDiv.style.flexDirection = 'row';
         boxDiv.style.color = 'white';
-        boxDiv.style.background = '#940CFF';
-        boxDiv.style.fontSize = '13px';
-        boxDiv.style.fontFamily = "Poppins, sans-serif";
-        boxDiv.style.fontWeight = '520';
-        boxDiv.style.padding = '2px 16px';
+        boxDiv.style.background = '#FF6509';
+        boxDiv.style.fontSize = '14px';
+        boxDiv.style.fontFamily = "Line Seed Sans, sans-serif";
+        boxDiv.style.fontWeight = '500';
+        boxDiv.style.padding = '4px 16px';
         boxDiv.style.borderRadius = '6px';
         boxDiv.style.width = 'auto';
         boxDiv.style.minWidth = '100px';
@@ -259,12 +259,14 @@ async function handleSummarizeArbitrary(
         if (result == "Not Dark Pattern"){
             boxDiv.innerText = 'Safe, the element doesn\'t contain any dark patterns.';
             boxDiv.appendChild(closeButton);
-            selected_element.style.background = '#D4FFDB';
+            // selected_element.style.background = '#D4FFDB';
+            boxDiv.style.background = 'green';
         }
         else {
             boxDiv.innerText = 'Dark Pattern Detected: '+result;
             boxDiv.appendChild(closeButton);
-            selected_element.style.background = '#FFD4D4';
+            // selected_element.style.background = '#FFD4D4';
+            boxDiv.style.background = 'red';
 
             // Store the data in local storage
             const dataToStore = { type: result.trim().toLowerCase(), url: window.location.href, date: new Date().toISOString().split('T')[0] };
@@ -353,11 +355,10 @@ async function handleSummarizeArbitrary(
   return (
     <>
       <Card
-        isDarkMode={isDarkMode}
-        heading="Scan a specific element."
-        primaryButton="Click to Scan"
-        content="Click to point out which element you want to scan in the page and get responses for that element."
-        imageSrc={tag}
+        heading="Scan Manually"
+        primaryButton="Select Element"
+        content="Select a specific suspicious element to check if it is a dark pattern or not."
+        imageSrc={manual}
         onPrimaryButtonClick={handleClick}
       ></Card>
     </>

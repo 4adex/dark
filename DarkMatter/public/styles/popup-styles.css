@@ -1,0 +1,39 @@
+#clickjack-popup{
+    --bg-dark: #0C0C0C;
+    --bg-card: #2A2A2A;
+    --bg-icon: #3A3A3A;
+    --text-primary: #FFFFFF;
+    --text-secondary: #757575;
+    --accent-primary: #DA5302;
+    --accent-hover: #b23702;
+    --grid-color: rgba(255, 75, 38, 0.3);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(-7deg,var(--bg-card) 0%,var(--bg-card) 41%,var(--accent-primary) 244%);
+    border-radius: 8px;
+    border: 1px solid var(--bg-icon);
+    padding: 16px;
+}
+
+@font-face {
+    font-family: 'Monocode';
+    src: url('./assets/fonts/monocode-semibold.ttf') format('truetype');
+    font-weight: 600; /* Regular */
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Line Seed Sans';
+    src: url('./assets/fonts/LINESeedSans.otf') format('opentype');
+    font-weight: 700; 
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Line Seed Sans';
+    src: url('./assets/fonts/LINESeedSans_Rg.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+  }

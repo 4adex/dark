@@ -1,5 +1,5 @@
 import Card from "./card";
-import tag from "../Tag.png"
+import scan from "../assets/Scan1.png"
 
 
 function Checkbox({value}) {
@@ -58,7 +58,8 @@ function Checkbox({value}) {
           "Obstruction",
           "Scarcity",
           "Sneaking",
-          "Social Proof"
+          "Social Proof",
+          "Fake Urgency",
         ];
         
         // Helper function to normalize strings
@@ -72,41 +73,65 @@ function Checkbox({value}) {
           // Split the response into classification and explanation
           const [classification, ...explanationParts] = value.split("\n");
           const explanation = explanationParts.join(" ");
+          console.log('Explanantion of the propmpt is:',explanation);
         
           // Normalize classification and check if it matches any allowed pattern
           if (!allowedPatterns.some(pattern => normalize(pattern) === normalize(classification))) {
             console.log(`Skipping element with key ${key} as it is not a relevant dark pattern.`);
             return; // Skip this iteration
           }
+
+
+          chrome.storage.local.get(['darkPatterns'], (result) => {
+            let darkPatterns = result.darkPatterns || [];
+            // Enforce FIFO if entries exceed 50,000
+            if (darkPatterns.length >= 50000) {
+              darkPatterns.shift(); // Remove the oldest entry (first element)
+            }
+            darkPatterns.push({ type: classification, url: window.location.href, date: new Date().toISOString().split('T')[0] }); // Add the new entry
+            chrome.storage.local.set({ darkPatterns: darkPatterns }, () => {
+              console.log('Data stored successfully');
+            });
+          });
         
           // Select the element with the corresponding dark-id
           const element = document.querySelector(`[dark-id="${key}"]`) as HTMLElement;
           if (element) {
             // Style the element
-            element.style.border = '1px solid red';
-            element.style.background = '#DFD4FF';
+            element.style.border = '1px solid #FF6509';
+            element.style.background = '#FFDBC6';
             element.style.position = 'relative';
-            element.style.borderRadius = '13px';
-            element.style.padding = '10px';
-            element.style.margin = '10px';
+            element.style.borderRadius = '6px';
+            element.style.padding = '8px';
+            element.style.margin = '15px';
         
             // Create the classification box
             const boxDiv = document.createElement('div');
             boxDiv.style.display = 'flex';
+            boxDiv.style.zIndex = '9999';
             boxDiv.style.justifyContent = 'center';
             boxDiv.style.alignItems = 'center';
             boxDiv.style.color = 'white';
-            boxDiv.style.background = '#940CFF';
-            boxDiv.style.fontSize = '12px';
-            boxDiv.style.padding = '8px 22px';
-            boxDiv.style.borderRadius = '20px';
+            boxDiv.style.background = 'red';
+            boxDiv.style.fontSize = '14px';
+            boxDiv.style.fontFamily = "Line Seed Sans, sans-serif";
+            boxDiv.style.fontWeight = '500';
+            boxDiv.style.padding = '4px 16px';
+            boxDiv.style.borderRadius = '6px';
             boxDiv.style.width = 'auto';
             boxDiv.style.minWidth = '100px';
             boxDiv.style.boxShadow = '0px 4px 10.7px 0px rgba(0, 0, 0, 0.25)';
             boxDiv.style.position = 'absolute';
-            boxDiv.style.right = '10%';
-            boxDiv.style.top = '-40%';
+            boxDiv.style.top = `-17px`;
+            boxDiv.style.right = '0';
             boxDiv.innerText = classification;
+            // document.body.appendChild(boxDiv);
+            // const rect = element.getBoundingClientRect();
+            // const scrollTop = window.scrollY;
+            // const scrollLeft = window.scrollX;
+
+            // boxDiv.style.top = `${rect.top + scrollTop - boxDiv.offsetHeight*2}px`;
+            // boxDiv.style.right = `${scrollLeft + document.body.clientWidth - rect.right}px`;
         
             // Create the tooltip for the explanation
             const tooltip = document.createElement('div');
@@ -128,6 +153,14 @@ function Checkbox({value}) {
             tooltip.style.textAlign = 'left';
             tooltip.style.lineHeight = '1.5';
             tooltip.innerText = explanation;
+
+            
+
+            
+
+
+
+
         
             // Show/hide tooltip on hover
             boxDiv.addEventListener('mouseenter', () => {
@@ -349,6 +382,12 @@ function Checkbox({value}) {
 
             console.log(".............check................")
             const cleanedMap = cleanupAndSortElements(requestbody);
+
+            cleanedMap.forEach((value, key) => {
+              if (value.split(' ').length < 3) {
+              cleanedMap.delete(key);
+              }
+            });
           
         
           
@@ -357,18 +396,35 @@ function Checkbox({value}) {
           
               try {
                 // Calculate the number of elements to process
-                const limit = Math.ceil((cleanedMap.size * fraction) / 4);
-                const partialMap = new Map([...cleanedMap].slice(0, limit));
+                const limit = Math.ceil((cleanedMap.size * (fraction-1)) / 4);
+
+
+                var partialMap = new Map([...cleanedMap].slice(0, limit));
+
+                const allowedValues = ["LIMITED TIME", "HURRY", "BEAT Amazon","Viewing This", "We will"];
+                const filteredMap = new Map<string, string>();
+
+                cleanedMap.forEach((value, key) => {
+                    if (allowedValues.some(allowedValue => value.includes(allowedValue))) {
+                    filteredMap.set(key, value);
+                    }
+                });
+
+                console.log("Filtered Map:", Array.from(filteredMap.entries()));
+
+                partialMap = filteredMap;
                 
                 console.log("Partial Map:", Array.from(partialMap.entries()));
 
           
                 const darkPatternsResults = await analyzeDarkPatterns(partialMap);
                 console.log("-----------------darkPatternsResults-----------------------");
+                console.log(darkPatternsResults);
+                console.log("-----------------darkPatternsResults-----------------------");
           
                 // Populate resultMap with the responses from analyzeDarkPatterns
-                cleanedMap.forEach((value, key) => {
-                  resultMap.set(key, darkPatternsResults.get(key) || "Unknown"); // Use the result or 'Unknown' if no result
+                darkPatternsResults.forEach((value, key) => {
+                  resultMap.set(key, value); // Use the result or 'Unknown' if no result
                 });
           
                 return resultMap;
@@ -497,12 +553,13 @@ function Checkbox({value}) {
 
 
         <Card
-          heading="Get Dark Patterns"
-          primaryButton="Show Dark Patterns"
-          content="This website has potential dark patterns present. Utilise a trained model to detect them."
-          imageSrc={tag}
+          heading="Dark Pattern Scanner"
+          primaryButton="Start Scan"
+          content="This page might contain potential dark patterns. Utilize Gemini Nano to identify them."
+          imageSrc={scan}
           onPrimaryButtonClick={handleClick}
         />
+        
       </>
     );
   };
