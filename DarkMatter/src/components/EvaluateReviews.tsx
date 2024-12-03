@@ -148,7 +148,7 @@ function EvaluateReviews(isDarkMode: any) {
             boxDiv.innerText = 'Safe, Not a fake review';
             selected_element.style.background = '#D4FFDB';
         } else {
-            boxDiv.innerText = 'Fake review detected';
+            boxDiv.innerText = result;
             selected_element.style.background = '#FFD4D4';
 
             //Save that a fake review was detected in local storage
@@ -190,8 +190,8 @@ function EvaluateReviews(isDarkMode: any) {
     async function runPrompt(prompt: string): Promise<string> {
         try {
             const params = {
-                systemPrompt: 'fake review could be a paid endorsement, spam, or otherwise not written by an actual customer.\nPlease analyze the following review and classify it as genuine or fake. Provide clear reasoning for your decision. \nWhen making your determination, consider factors such as:\n    Overuse of superlatives or overly positive language\n    Lack of specific details about the product/service\n    Unusual patterns in the writing style\nUse chain-of-thought reasoning to walk through your analysis step-by-step.\nTo help guide your classification, consider the following examples:\nExample 1 (Fake): "This is literally the best phone ever! It\'s perfect in every way. The battery lasts forever, the screen is amazing, and it\'s so fast. Everyone should buy this phone!"\nReasoning: This review is likely fake because it uses exaggerated language, lacks specific details, and fails to mention any potential drawbacks.\nExample 2 (Fake): "Don\'t waste your money on this product! It\'s completely useless and doesn\'t work at all. The worst purchase I\'ve ever made."\nReasoning: This review is likely fake because it uses extreme language, fails to provide specific details about the product\'s shortcomings, and seems overly dramatic.\nWhen evaluating the review you\'re presented with, compare it to these examples and consider which characteristics it shares with genuine or fake reviews. Remember to look for red flags such as overuse of superlatives, generic language, and inconsistencies with typical customer experiences.\nKey Points to Emphasize\n    Look for specific details about the product or service\n    Be wary of reviews that are extremely positive or negative without justification',
-                temperature: parseFloat('1'),
+                systemPrompt: 'A fake review could be a paid endorsement, spam, or otherwise not written by an actual customer. Please analyze the following review and assess the probability (as a percentage) of it being fake. When making your determination, consider the following factors: \n Overuse of superlatives or overly positive/negative language: Does the review use exaggerated phrases like "the best ever" or "the worst product"? \n Lack of specific details: Does the review provide concrete, specific experiences with the product or service? \n Unusual writing patterns: Are there inconsistencies, repetitive phrases, or unnatural writing that deviate from typical customer reviews? \n Use chain-of-thought reasoning to walk through your analysis step-by-step. Provide a clear probability (e.g., 70% likely fake) and explain your reasoning in detail. \n Examples for Guidance \n Example 1 \n"This is literally the best phone ever! Its perfect in every way. The battery lasts forever, the screen is amazing, and its so fast. Everyone should buy this phone!" \n Analysis: \n Uses exaggerated language ("best phone ever," "perfect in every way"). \n Lacks specific details about personal use or product features. /n Probability: 90% likely fake. \n Example 2 \n "Dont waste your money on this product! Its completely useless and doesnt work at all. The worst purchase I have ever made." \n Analysis: \n Overly dramatic and negative ("completely useless," "worst purchase"). \n Provides no concrete examples of issues or personal experience. \n Probability: 85% likely fake. \n Your task is to give a probability of the review being fake.',
+                 temperature: parseFloat('1'),
                 topK: parseInt('3'),
               };
           if (!session) {
@@ -202,6 +202,9 @@ function EvaluateReviews(isDarkMode: any) {
           console.log('Running prompt:', prompt);
         let result = await session.prompt('Review to evaluate is:'+prompt);
           const resultLines = result.split('\n');
+          console.log('................................');
+          console.log('Result:', resultLines);
+          console.log('................................');
             result = resultLines[0];
           return result;
         } catch (e) {
