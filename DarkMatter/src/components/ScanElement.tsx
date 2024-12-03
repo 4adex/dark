@@ -152,7 +152,7 @@ async function handleSummarizeArbitrary(
         };
 
         element.classList.add("highlighted-element");
-        element.style.background = "#DFD4FF";
+        element.style.background = "#FFDBC6";
         element.style.borderRadius = "8px";
       }
     };
@@ -186,9 +186,9 @@ async function handleSummarizeArbitrary(
 
 
         selected_element.style.border = '1px solid #FF6509';
-        selected_element.style.background = '#DED8D5';
+        selected_element.style.background = '#FFDBC6';
         selected_element.style.position = 'relative';
-        selected_element.style.borderRadius = '13px';
+        selected_element.style.borderRadius = '6px';
         selected_element.style.padding = '4px';
         // selected_element.style.margin = '10px';
 
@@ -259,12 +259,14 @@ async function handleSummarizeArbitrary(
         if (result == "Not Dark Pattern"){
             boxDiv.innerText = 'Safe, the element doesn\'t contain any dark patterns.';
             boxDiv.appendChild(closeButton);
-            selected_element.style.background = '#D4FFDB';
+            // selected_element.style.background = '#D4FFDB';
+            boxDiv.style.background = 'green';
         }
         else {
             boxDiv.innerText = 'Dark Pattern Detected: '+result;
             boxDiv.appendChild(closeButton);
-            selected_element.style.background = '#FFD4D4';
+            // selected_element.style.background = '#FFD4D4';
+            boxDiv.style.background = 'red';
 
             // Store the data in local storage
             const dataToStore = { type: result.trim().toLowerCase(), url: window.location.href, date: new Date().toISOString().split('T')[0] };
