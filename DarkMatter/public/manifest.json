@@ -24,7 +24,8 @@
         "activeTab",
         "scripting",
         "alarms",
-        "aiLanguageModelOriginTrial"
+        "aiLanguageModelOriginTrial",
+        "offscreen"
     ],
 
     "host_permissions": [
