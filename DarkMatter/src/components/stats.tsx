@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-function Stats(isDarkMode: any) {
+function Stats() {
     interface DataToStore {
         type: string;
         url: string;

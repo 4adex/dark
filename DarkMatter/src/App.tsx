@@ -3,12 +3,13 @@ import ScanElement from './components/ScanElement';
 import EvaluateReviews from './components/EvaluateReviews';
 import Dom from './components/Dom';
 import Slider  from './components/slider';
-import Checkprice from './components/CheckPrice';
+// import Checkprice from './components/CheckPrice';
+import Clickjack from './components/Clickjacking';
 import Stats from './components/stats';
 import DarkLogo from "./assets/darkLogo2.svg";
-import Close from "./assets/Close2.svg";
+// import Close from "./assets/Close2.svg";
 import { useEffect, useState } from 'react';
-import DarkPatternSelector from './components/darkselector';
+// import DarkPatternSelector from './components/darkselector';
 import { Maximize2, Hand, MessageSquare, MousePointer2, FileText, X } from 'lucide-react';
 
 
@@ -145,6 +146,7 @@ function App() {
       <Dom value={sliderValue} />
       <ScanElement />
       <EvaluateReviews />
+      <Clickjack />
     </div>
 
 
