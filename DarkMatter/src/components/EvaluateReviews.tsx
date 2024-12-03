@@ -43,7 +43,7 @@ function EvaluateReviews(isDarkMode: any) {
         };
 
         element.classList.add("highlighted-element");
-        element.style.background = "#DFD4FF";
+        element.style.background = "#FFDBC6";
         element.style.borderRadius = "8px";
       }
     };
@@ -76,10 +76,10 @@ function EvaluateReviews(isDarkMode: any) {
         
 
 
-        selected_element.style.border = '1px solid red';
-        selected_element.style.background = '#FFF3D4';
+        selected_element.style.border = '1px solid #FF6509';
+        selected_element.style.background = '#FFDBC6';
         selected_element.style.position = 'relative';
-        selected_element.style.borderRadius = '13px';
+        selected_element.style.borderRadius = '6px';
         selected_element.style.padding = '4px';
 
 
@@ -93,9 +93,9 @@ function EvaluateReviews(isDarkMode: any) {
         boxDiv.style.alignItems = 'center';
         boxDiv.style.flexDirection = 'row';
         boxDiv.style.color = 'white';
-        boxDiv.style.background = '#940CFF';
-        boxDiv.style.fontSize = '13px';
-        boxDiv.style.fontFamily = "Poppins, sans-serif";
+        boxDiv.style.background = '#FF6509';
+        boxDiv.style.fontSize = '14px';
+        boxDiv.style.fontFamily = "Line Seed Sans, sans-serif";
         boxDiv.style.fontWeight = '520';
         boxDiv.style.padding = '8px 22px';
         boxDiv.style.fontSize = '12px';
@@ -146,10 +146,12 @@ function EvaluateReviews(isDarkMode: any) {
 
         if (result.includes('Genuine') || result.includes('genuine')) {
             boxDiv.innerText = 'Safe, Not a fake review';
-            selected_element.style.background = '#D4FFDB';
+            // selected_element.style.background = '#D4FFDB';
+            boxDiv.style.background = 'green';
         } else {
-            boxDiv.innerText = 'Fake review detected';
-            selected_element.style.background = '#FFD4D4';
+            boxDiv.innerText = result;
+            // selected_element.style.background = '#FFD4D4';
+            boxDiv.style.background = 'red';
 
             //Save that a fake review was detected in local storage
             const dataToStore = { type: 'fake_review', url: window.location.href, date: new Date().toISOString().split('T')[0] };
