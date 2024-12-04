@@ -21,7 +21,11 @@ Currently the extension works on the latest Chrome canary builds. In order to us
     - `chrome://flags/#writer-api-for-gemini-nano`
     - `chrome://flags/#language-detection-api`
 
-### Setup Instructions
+### Setup Instructions (non development)
+- Click on release and download the latest `dist.zip` file.
+- Unzip it and Load Unpacked in chrome to enable the extension.
+
+### Setup Instructions (development)
 
 - Ensure that you have node and npm installed 
 - Clone the repo and navigate to DarkMatter
