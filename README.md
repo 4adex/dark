@@ -35,7 +35,7 @@ npm install
 npm run build
 ```
 - A `dist` directory will be created in the path `dark/DarkMatter/dist`
-- Load Unpacked the dist folder as extension directory from your Chrom canary or Chrome dev browser.
+- Load Unpacked the dist folder as extension directory from your Chrome canary or Chrome dev browser.
 - The extension should now load as an unpacked extension.
 
 ## Made With
