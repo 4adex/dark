@@ -1,4 +1,7 @@
 # DarkMatter
+
+![DarkMatter](DarkMatter-pitch.png)
+
 DarkMatter is a browser extension that empowers users to browse safely by detecting dark patterns, analyzing reviews for authenticity, and preventing clickjacking attacks. With AI-driven detection and user-friendly tools, it ensures a transparent and secure online experience, putting users back in control of their web interactions.
 
 
