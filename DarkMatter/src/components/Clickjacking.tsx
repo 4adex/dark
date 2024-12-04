@@ -55,32 +55,50 @@ function EvaluateReviews() {
       div.style.zIndex = "999999";
       div.style.borderRadius = "8px";
       div.style.border = "2px solid #3A3A3A";
-      div.style.padding = "8px 16px";
+      div.style.padding = "27px 32px";
       div.style.background = "linear-gradient(-7deg,#2A2A2A 0%,#2A2A2A 41%,#DA5302 244%)";
       div.style.boxShadow = "0px 0px 16px rgba(0, 0, 0, 0.25)";
       div.style.display = "flex";
       div.style.flexDirection = "column";
-      div.style.maxWidth = "400px";
+      div.style.maxWidth = "360px";
 
 
       var heading = document.createElement("h1");
-      heading.innerText = "Clickjacking detected";
+      heading.innerText = "Clickjacking detected !!";
       heading.style.color = "white";
       heading.style.fontFamily = "'Line Seed Sans', sans-serif";
       heading.style.fontWeight = "500";
       heading.style.fontSize = "24px";
-      heading.style.marginTop = "16px";
+      heading.style.marginTop = "8px";
+
+      var textdiv = document.createElement("div");
+      textdiv.style.display = "flex";
+      textdiv.style.gap = "12px";
+      textdiv.style.alignItems = "center";
+      textdiv.style.marginTop = "8px";
+
+      var number = document.createElement("h1");
+      number.innerText = `${susIframes.length}`;
+      number.style.color = "#DA5302";
+      number.style.fontFamily = "'Line Seed Sans', sans-serif";
+      number.style.fontWeight = "700";
+      number.style.fontSize = "64px";
 
       var para = document.createElement("p");
-      para.innerText = `${susIframes.length} probable clickjacking attempts detected and removed from the page.`;
+      para.innerText = `probable clickjacking attempts detected and removed from the page.`;
       para.style.color = "#757575";
       para.style.fontFamily = "'Line Seed Sans', sans-serif";
       para.style.fontSize = "16px";
       para.style.fontWeight= "400";
       para.style.marginBottom= "16px";
 
+      textdiv.appendChild(number);
+      textdiv.appendChild(para);
+
+      
+
       div.appendChild(heading);
-      div.appendChild(para);
+      div.appendChild(textdiv);
 
       
 

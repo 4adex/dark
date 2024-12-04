@@ -3,6 +3,7 @@ import ScanElement from './components/ScanElement';
 import EvaluateReviews from './components/EvaluateReviews';
 import Dom from './components/Dom';
 import Slider  from './components/slider';
+import Report  from './components/ReportElement';
 // import Checkprice from './components/CheckPrice';
 import Clickjack from './components/Clickjacking';
 import Stats from './components/stats';
@@ -147,6 +148,7 @@ function App() {
       <ScanElement />
       <EvaluateReviews />
       <Clickjack />
+      <Report />
     </div>
 
 

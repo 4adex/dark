@@ -227,7 +227,7 @@ body {
 
 
 .grid-background {
-  position: absolute;
+  position: fixed; /* Makes it cover the viewport and content */
   top: 0;
   left: 0;
   right: 0;
@@ -240,6 +240,8 @@ body {
   opacity: 0.2;
   transition: opacity 0.3s ease, transform 0.3s ease;
   pointer-events: none;
+  min-height: 100vh; /* Ensure it fills viewport initially */
+  height: 100%; /* Extend based on content height */
 }
 
 .dark-matter-extension:hover .grid-background {
@@ -248,8 +250,43 @@ body {
 }
 
 
+.report-wrapper {
+  display: flex;
+  padding: 8px;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.report-label {
+  font-family: 'Line Seed Sans', sans-serif;
+  font-weight: 400;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
 
 
+.report-button {
+  color: var(--accent-primary);
+  font-family: 'Monocode', sans-serif;
+  font-weight: 600;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4%;
+  cursor: pointer;
+  font-size: 15px;
+  background: none;
+  border: 2px solid var(--accent-primary);
+}
+
+
+.report-button:hover {
+  background-color: var(--accent-primary);
+  color: var(--text-primary);
+}
+
+.report-button:active {
+  background-color: var(--accent-hover);
+}
 
 
 .card{

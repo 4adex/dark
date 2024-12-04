@@ -1,6 +1,6 @@
 import Card from "./card";
 import reviews from "../assets/Review.png";
-function EvaluateReviews(isDarkMode: any) {
+function EvaluateReviews() {
   const handleClick = async () => {
     let [tab] = await chrome.tabs.query({ active: true });
     // giving generic params to executeScript for handling args
@@ -234,7 +234,6 @@ function EvaluateReviews(isDarkMode: any) {
   return (
     <>
       <Card
-        isDarkMode={isDarkMode}
         heading="Review Evaluation"
         primaryButton="Select Review"
         content="Product reviews can be fake as well as AI generated. Use this tool to know how trustable a review is."
